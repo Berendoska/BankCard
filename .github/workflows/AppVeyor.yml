@@ -1,0 +1,15 @@
+image: Ubuntu  # образ для сборки
+
+stack: jdk 11  # версия JDK
+
+branches:
+  only:
+    - main 
+
+build: off  
+install:
+  
+  - java -jar ./artifacts/app-order_copy.jar &
+
+build_script:
+  - ./gradlew test --info  
