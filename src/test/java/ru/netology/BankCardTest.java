@@ -21,12 +21,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  class BankCardTest {
 
       WebDriver driver;
-
+     @BeforeAll
+     static void setupClass() {
+         WebDriverManager.chromedriver().setup();
+     }
 
      @BeforeEach
      public void init() {
 
-         driver = WebDriverManager.chromedriver().create();
          driver = new ChromeDriver();
          //следующие действия для включения headless режима , ексли их убрать
          //будут видны действия в появляющемся окне (заполнение формы)
@@ -44,11 +46,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
          driver = null;
      }
 
-     @Test
-     void test() {
-         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
-         assertThat(driver.getTitle()).contains("Selenium WebDriver");
-     }
 
 
      @Test
