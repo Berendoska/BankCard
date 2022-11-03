@@ -1,5 +1,6 @@
 package ru.netology;
 
+import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,22 +12,21 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
  class BankCardTest {
 
       WebDriver driver;
+      
 
-
-
-     @BeforeAll
-     static void setUp() {
-         WebDriverManager.chromedriver().setup();
-     }
      @BeforeEach
      public void init() {
+
+         driver = WebDriverManager.chromedriver().create();
          driver = new ChromeDriver();
          //следующие действия для включения headless режима , ексли их убрать
          //будут видны действия в появляющемся окне (заполнение формы)
@@ -42,6 +42,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
      void tearsDown() {
          driver.quit();
          driver = null;
+     }
+
+     @Test
+     void test() {
+         driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
+         assertThat(driver.getTitle()).contains("Selenium WebDriver");
      }
 
 
