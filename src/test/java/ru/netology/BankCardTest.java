@@ -9,26 +9,27 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
  class BankCardTest {
 
-     private WebDriver driver;
+      WebDriver driver;
 
 
 
      @BeforeAll
      static void setUp() {
-         System.setProperty("webdriver.chrome.driver", "driver/chrome/chromedriver.exe");
-
+         WebDriverManager.chromedriver().setup();
      }
      @BeforeEach
      public void init() {
          driver = new ChromeDriver();
+         //следующие действия для включения headless режима , ексли их убрать
+         //будут видны действия в появляющемся окне (заполнение формы)
          ChromeOptions options = new ChromeOptions();
          options.addArguments("--disable-dev-shm-usage");
          options.addArguments("--no-sandbox");
@@ -49,7 +50,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
          driver.get("http://localhost:9999");
          List<WebElement> elements = driver.findElements(By.className("input__control"));
          driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Ирова-Иркина Ира");
-         elements.get(1).sendKeys("+79889889898");
+         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79888888888");
          driver.findElement(By.className("checkbox__box")).click();
          driver.findElement(By.className("button__text")).click();
          String text = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText();
