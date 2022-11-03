@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
      @BeforeEach
      public void init() {
 
-         driver = new ChromeDriver();
+        // driver = new ChromeDriver();
          //следующие действия для включения headless режима , ексли их убрать
          //будут видны действия в появляющемся окне (заполнение формы)
          ChromeOptions options = new ChromeOptions();
