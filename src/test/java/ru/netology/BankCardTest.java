@@ -13,7 +13,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 
-import java.util.List;
+//import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  class BankCardTest {
 
       WebDriver driver;
-      
+
 
      @BeforeEach
      public void init() {
@@ -54,7 +54,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
      @Test
      void testCard(){
          driver.get("http://localhost:9999");
-         List<WebElement> elements = driver.findElements(By.className("input__control"));
+         //List<WebElement> elements = driver.findElements(By.className("input__control"));
          driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Ирова-Иркина Ира");
          driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79888888888");
          driver.findElement(By.className("checkbox__box")).click();
